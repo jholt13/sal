@@ -198,7 +198,7 @@ INSTALLED_APPS = (
     "inventory",
     "licenses",
     "profiles",
-    "bootstrap3",
+    "django_bootstrap5",
     "datatableview",
     "search",
     "rest_framework",
@@ -269,7 +269,7 @@ _SAL_LOGGING_CONFIG = {
 update_sal_logging_config(_SAL_LOGGING_CONFIG)
 
 
-BOOTSTRAP3 = {
+BOOTSTRAP5 = {
     "set_placeholder": False,
 }
 
