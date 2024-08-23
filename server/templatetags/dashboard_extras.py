@@ -1,3 +1,4 @@
+import datetime
 import json
 import time
 from distutils.version import LooseVersion
@@ -6,7 +7,6 @@ import dateutil.parser
 
 from django import template
 from django.shortcuts import get_object_or_404
-from django.utils.timezone import utc
 
 import utils.text_utils
 from server.models import MachineGroup, BusinessUnit
@@ -90,7 +90,7 @@ def machine_group_count(group_id):
 @register.filter
 def convert_datetime(string):
     """Converts a string into a date object"""
-    the_date = dateutil.parser.parse(string).replace(tzinfo=utc)
+    the_date = dateutil.parser.parse(string).replace(tzinfo=datetime.timezone.utc)
     return the_date
 
 
