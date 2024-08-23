@@ -1,5 +1,5 @@
 # Sal Dockerfile
-FROM python:3.9.19-slim-bullseye
+FROM python:3.10.14-slim-bookworm
 
 MAINTAINER Graham Gilbert <graham@grahamgilbert.com>
 
