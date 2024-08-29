@@ -1,5 +1,5 @@
 # Sal Dockerfile
-FROM python:3.10.14-slim-bookworm
+FROM python:3.11.9-slim-bookworm
 
 MAINTAINER Graham Gilbert <graham@grahamgilbert.com>
 
@@ -40,7 +40,8 @@ RUN apt-get update && \
     mkdir /tmp/setup
 COPY setup/requirements.txt /tmp/setup/requirements.txt
 COPY requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt && \
+RUN pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt && \
     # rm -rf /tmp/setup && \
     update-rc.d -f postgresql remove && \
