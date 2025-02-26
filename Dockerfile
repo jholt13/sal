@@ -1,8 +1,6 @@
 # Sal Dockerfile
 FROM python:3.11.9-slim-bookworm
 
-MAINTAINER Graham Gilbert <graham@grahamgilbert.com>
-
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 ENV APPNAME Sal
@@ -34,7 +32,10 @@ RUN apt-get update && \
     libpq-dev \
     python3-dev \
     curl \
-    libffi-dev && \
+    libffi-dev \
+    libxmlsec1-dev \
+    libxml2-dev \ 
+    xmlsec1 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     mkdir /tmp/setup
@@ -58,6 +59,7 @@ COPY docker/run.sh /run.sh
 COPY docker/nginx/nginx-env.conf /etc/nginx/main.d/
 COPY docker/nginx/sal.conf /etc/nginx/sites-enabled/sal.conf
 COPY docker/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY docker/attributemaps $APP_DIR/sal/attributemaps
 
 RUN chmod 755 /run.sh && \
     rm -f /etc/nginx/sites-enabled/default && \
@@ -70,8 +72,8 @@ RUN chmod 755 /run.sh && \
     touch $APP_DIR/sal.log &&\
     chmod 777 $APP_DIR/sal.log
 
-    #&& \
-    #find . -name $APP_DIR/\*.pyc -delete
+#&& \
+#find . -name $APP_DIR/\*.pyc -delete
 
 WORKDIR $APP_DIR
 EXPOSE 8000
